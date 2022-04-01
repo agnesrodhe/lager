@@ -5,7 +5,7 @@ import config from "../config/config.json";
 export default function Stock() {
     return (
         <View>
-        <Text style={{ color: '#333', fontSize: 24 }}>Lagerförteckning</Text>
+        <Text style={{ color: '#486875', fontSize: 30, margin: 10, textDecorationLine: 'underline', textAlign: 'center', fontFamily: 'Times New Roman' }}>Lagerförteckning</Text>
         <StockList />
         </View>
     );
@@ -20,7 +20,7 @@ function StockList() {
             .then(result => setProducts(result.data));
     }, []);
 
-    const list = products.map((product, index) => <Text key={index}>{ product.name }</Text>);
+    const list = products.map((product, index) => <Text style={{ paddingBottom: 5, fontFamily: 'Times New Roman', fontSize: 20}}key={index}>{ product.name } | { product.stock } st</Text>);
 
     return (
         <View>

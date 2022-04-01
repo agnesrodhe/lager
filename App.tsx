@@ -1,18 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import warehouse from './assets/warehouse.jpg';
+import warehouseLamp from './assets/warehouse-lamp.jpg';
 import Stock from './components/Stock.tsx';
 // 4981f8a0a5e999e31be26ed3a8019945 APInyckel
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.base}>
-      <Text style={{color: '#33c', fontSize: 42}}>Lager-Appen</Text>
-      <Image source={warehouse} style={{ width: 320, height: 240 }} />
+      <ScrollView style={styles.base}>
+      <Text style={{color: '#486875', fontSize: 52, fontFamily: 'Cochin', textAlign: 'center', margin: 10}}>Lamplager</Text>
+      <Image source={warehouseLamp} style={{ width: 340, height: 240, borderRadius: 5, borderColor: '#756553', borderWidth: 3}} />
       <Stock />
       <StatusBar style="auto" />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   base: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF4E8',
     paddingLeft: 12,
     paddingRight: 12,
   }
