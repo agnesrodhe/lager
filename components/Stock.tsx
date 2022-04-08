@@ -1,26 +1,31 @@
 import { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
-import config from "../config/config.json";
+import productModel from "../models/products.ts";
+import { Base, Typography } from './../styles';
 
-export default function Stock() {
+export default function Stock({products, setProducts}) {
     return (
         <View>
-        <Text style={{ color: '#486875', fontSize: 30, margin: 10, textDecorationLine: 'underline', textAlign: 'center', fontFamily: 'Times New Roman' }}>Lagerförteckning</Text>
-        <StockList />
+        <Text style={{...Typography.header3, ...Base.header3}}>Lagerförteckning</Text>
+        <StockList products={products} setProducts={setProducts} />
         </View>
     );
 }
 
-function StockList() {
-    const [products, setProducts] = useState([]);
+function StockList({products, setProducts}) {
 
     useEffect(() => {
-        fetch(`${config.base_url}/products?api_key=${config.api_key}`)
-            .then(response => response.json())
-            .then(result => setProducts(result.data));
+        (async () => {
+            const allProducts = await productModel.getProducts();
+            setProducts(allProducts);
+        })();
     }, []);
 
-    const list = products.map((product, index) => <Text style={{ paddingBottom: 5, fontFamily: 'Times New Roman', fontSize: 20}}key={index}>{ product.name } | { product.stock } st</Text>);
+    const list = products.map((product, index) => 
+            <Text style={ Typography.normal } key={index}>
+                { product.name } | { product.stock } st
+            </Text>
+        );
 
     return (
         <View>
