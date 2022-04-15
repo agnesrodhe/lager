@@ -4,7 +4,7 @@ import orderModel from "../models/orders.ts";
 import productModel from "../models/products.ts";
 import { Base, Typography } from "../styles";
 
-export default function PickList({ route, navigation, setProducts }) {
+export default function PickList({ route, navigation }) {
     const { order } = route.params;
     const [productsList, setProductsList] = useState([]);
 
@@ -24,7 +24,7 @@ export default function PickList({ route, navigation, setProducts }) {
         return <Text style={Typography.normal2}
                 key={index}
                 >
-                    {item.name} - {item.amount} - {item.location}
+                    {item.name} - {item.amount}st - {item.location}
                 </Text>;
     });
 
@@ -32,7 +32,9 @@ export default function PickList({ route, navigation, setProducts }) {
 
     for (let item in order.order_items) {
         if (order.order_items[item].stock >= order.order_items[item].amount) {
-            pickButtonOrText = <Button color='green' title="Plocka order" onPress={pick} />
+            pickButtonOrText = <Pressable style={{...Base.button, ...Typography.button}} onPress={() => { pick();}}>
+                <Text style={{ ...Typography.buttonText}}>Plocka order</Text>
+            </Pressable>
         } else {
             pickButtonOrText = <Text style={{...Base.warning, ...Typography.header4}}>Det finns inte tillräckligt många varor i lager för att plocka ordern.</Text>
         }

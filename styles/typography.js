@@ -36,3 +36,29 @@ export const normal2 = {
     marginBottom: 5,
     fontFamily: 'Times New Roman',
 }
+
+export const label = {
+    fontWeight: 'bold',
+    marginTop: 2,
+    marginBottom: 4,
+}
+
+export const buttonText = {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+}
+
+export const leveransliten = {
+    fontSize: 15,
+    marginBottom: 5,
+    fontFamily: 'Times New Roman',
+}
+
+export const leveransstor = {
+    fontSize: 20,
+    marginBottom: 5,
+    fontFamily: 'Times New Roman',
+}
