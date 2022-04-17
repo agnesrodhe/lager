@@ -29,6 +29,9 @@ const delivery = {
         })
         .then(function (response) {
 
+        })
+        .catch(function(err){
+            console.log(err);
         });
     }
 }

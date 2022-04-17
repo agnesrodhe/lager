@@ -66,10 +66,9 @@ function DateDropDown(props) {
     );
 }
 
-export default function DeliveryForm({ route, navigation, setProducts }) {
+export default function DeliveryForm({ navigation, setProducts }) {
     const [delivery, setDelivery] = useState<Partial<Delivery>>({});
     const [currentProduct, setCurrentProduct] = useState<Partial<Products>>({});
-
 
     async function addDelivery() {
         await deliveryModel.addDelivery(delivery);
@@ -78,10 +77,9 @@ export default function DeliveryForm({ route, navigation, setProducts }) {
             ...currentProduct,
             stock: (currentProduct.stock || 0) + (delivery.amount || 0), api_key: config.api_key
         };
-
-        console.log(updatedProduct);
-
         await productModel.updateProduct(updatedProduct);
+
+        // setProducts(await productModel.getProducts());
 
         navigation.navigate("Lista", { reload: true });
     }

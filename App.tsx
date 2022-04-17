@@ -19,7 +19,6 @@ const routeIcons = {
 
 export default function App() {
   const [products, setProducts] = useState([]);
-  // console.log(products);
   return (
     <SafeAreaView style={Base.container}>
       <NavigationContainer>
