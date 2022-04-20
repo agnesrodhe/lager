@@ -7,7 +7,10 @@ import Deliveries from "./components/Deliveries.tsx";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Base } from './styles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Auth from "./components/auth/Auth";
+import authModel from "./models/auth";
+import Invoices from "./components/invoices/Invoices";
 
 
 const Tab = createBottomTabNavigator();
@@ -15,10 +18,18 @@ const routeIcons = {
   "Lager": "home",
   "Plock": "list",
   "Inleveranser": "car",
+  "Faktura": "mail",
+  "Logga in": "lock-closed-outline"
 };
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
   const [products, setProducts] = useState([]);
+
+  useEffect(async () => {
+    setIsLoggedIn(await authModel.loggedIn());
+  }, []);
+
   return (
     <SafeAreaView style={Base.container}>
       <NavigationContainer>
@@ -42,6 +53,12 @@ export default function App() {
           <Tab.Screen name="Inleveranser">
           {() => <Deliveries products={products} setProducts={setProducts} />}
           </Tab.Screen>
+          {isLoggedIn ?
+            <Tab.Screen name="Faktura" component={Invoices} /> :
+            <Tab.Screen name="Logga in">
+              {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
+            </Tab.Screen>
+          }
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
