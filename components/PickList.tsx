@@ -4,7 +4,7 @@ import orderModel from "../models/orders.ts";
 import productModel from "../models/products.ts";
 import { Base, Typography } from "../styles";
 
-export default function PickList({ route, navigation }) {
+export default function PickList({ route, navigation, setProducts }) {
     const { order } = route.params;
     const [productsList, setProductsList] = useState([]);
 
@@ -17,6 +17,7 @@ export default function PickList({ route, navigation }) {
 
     async function pick() {
         await orderModel.pickOrder(order);
+        setProducts(await productModel.getProducts());
         navigation.navigate("Lista", { reload: true });
     }
 

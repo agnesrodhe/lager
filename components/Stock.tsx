@@ -4,7 +4,6 @@ import productModel from "../models/products.ts";
 import { Base, Typography } from './../styles';
 
 export default function Stock({ products, setProducts}) {
-    // console.log(products);
     return (
         <View>
         <Text style={{...Typography.header3, ...Base.header3}}>Lagerförteckning</Text>

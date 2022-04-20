@@ -79,7 +79,7 @@ export default function DeliveryForm({ navigation, setProducts }) {
         };
         await productModel.updateProduct(updatedProduct);
 
-        // setProducts(await productModel.getProducts());
+        setProducts(await productModel.getProducts());
 
         navigation.navigate("Lista", { reload: true });
     }
@@ -110,7 +110,14 @@ export default function DeliveryForm({ navigation, setProducts }) {
                 placeholder="Skriv in antal"
                 style={{ ...Forms.input }}
                 onChangeText={(content: string) => {
-                    setDelivery({ ...delivery, amount: parseInt(content) })
+                    let numericNumber;
+                    if (content) {
+                        numericNumber = parseInt(content);
+                    } else {
+                        numericNumber = 0;
+                    }
+
+                    setDelivery({ ...delivery, amount: numericNumber })
                 }}
                 value={delivery?.amount?.toString()}
                 keyboardType="numeric"

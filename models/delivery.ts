@@ -18,7 +18,6 @@ const delivery = {
             comment: deliveryToAdd.comment,
             api_key: config.api_key
         };
-        console.log(deliveryAdd);
 
         await fetch(`${config.base_url}/deliveries`, {
             body: JSON.stringify(deliveryAdd),
@@ -29,9 +28,6 @@ const delivery = {
         })
         .then(function (response) {
 
-        })
-        .catch(function(err){
-            console.log(err);
         });
     }
 }
