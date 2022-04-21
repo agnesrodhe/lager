@@ -1,13 +1,22 @@
 import config from "../config/config.json";
 
-import Order from "..interfaces/order";
+import Order from "../interfaces/order";
 import OrderItem from "../interfaces/order_item";
+import Invoice from "../interfaces/invoice";
 
 import product from "../models/products";
 
 const orders = {
     getOrders: async function getOrders(): Promise<Order[]> {
         const response = await fetch(`${config.base_url}/orders?api_key=${config.api_key}`);
+        const result = await response.json();
+
+        return result.data;
+    },
+
+    getOrder: async function getOrder(orderToGet: Invoice): Promise<Order> {
+        let order_id = orderToGet.order_id;
+        const response = await fetch(`${config.base_url}/orders/${order_id}?api_key=${config.api_key}`);
         const result = await response.json();
 
         return result.data;

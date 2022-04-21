@@ -55,7 +55,22 @@ export const button = {
     paddingHorizontal: 32,
     borderRadius: 4,
     backgroundColor: 'tomato',
+    marginBottom: 20,
+    marginTop: 20,
+}
+
+export const button2 = {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    backgroundColor: '#486875',
     marginBottom: 30,
+}
+
+export const button2Color = {
+    color: 'white',
 }
 
 export const inleverans = {

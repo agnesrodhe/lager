@@ -1,13 +1,14 @@
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Button, Pressable } from "react-native";
 import { Typography, Forms, Base } from "../../styles";
 
 export default function AuthFields({ auth, setAuth, title, submit, navigation }) {
     return (
         <View style={Base.base}>
-            <Text>{title}</Text>
+            <Text style={{ ...Typography.header3, ...Base.header3}}>{title}</Text>
 
-            <Text>E-post</Text>
+            <Text style={{ ...Typography.label }}>E-post</Text>
             <TextInput 
+                style={{ ...Forms.input }}
                 onChangeText={(content: string) => {
                     setAuth({...auth, email:content})
                 }}
@@ -17,8 +18,9 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation })
                 autoCorrect={false}
             />
 
-            <Text>Lösenord</Text>
+            <Text style={{ ...Typography.label }}>Lösenord</Text>
             <TextInput 
+                style={{ ...Forms.input }}
                 onChangeText={(content:string) => {
                     setAuth({ ...auth, password: content })
                 }}
@@ -27,20 +29,17 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation })
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-
-            <Button 
-                title={title}
-                onPress={() => {
-                    submit();
-                }}
-            />
+            <Pressable style={{...Base.button}} onPress={() => {
+                submit();
+                }}>
+                <Text style={{ ...Typography.buttonText}}>Logga in</Text>
+            </Pressable>
             {title == "Logga in" && 
-                <Button
-                    title ="Registrera istället"
-                    onPress={() => {
-                        navigation.navigate("Register");
-                }} 
-                />
+                <Pressable style={{...Base.button2}} onPress={async () => {
+                    navigation.navigate("Register");
+                    }}>
+                    <Text style={{ ...Typography.buttonText, ...Base.button2Color}}>Registrera istället</Text>
+                </Pressable>
             }
         </View>
     );

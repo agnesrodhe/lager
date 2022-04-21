@@ -54,7 +54,9 @@ export default function App() {
           {() => <Deliveries products={products} setProducts={setProducts} />}
           </Tab.Screen>
           {isLoggedIn ?
-            <Tab.Screen name="Faktura" component={Invoices} /> :
+            <Tab.Screen name="Faktura">
+              {() => <Invoices setIsLoggedIn={setIsLoggedIn} />}
+            </Tab.Screen> :
             <Tab.Screen name="Logga in">
               {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
             </Tab.Screen>

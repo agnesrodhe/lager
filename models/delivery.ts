@@ -10,7 +10,6 @@ const delivery = {
     },
 
     addDelivery: async function addDelivery(deliveryToAdd: Partial<Delivery>) {
-        console.log(deliveryToAdd);
         let deliveryAdd = {
             product_id: deliveryToAdd.product_id,
             amount: deliveryToAdd.amount,
