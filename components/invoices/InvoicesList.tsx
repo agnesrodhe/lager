@@ -19,7 +19,6 @@ export default function InvoicesList({ route, navigation, setIsLoggedIn }) {
     }
 
     async function reloadInvoices() {
-        // console.log(await invoiceModel.getInvoices());
         setAllInvoices(await invoiceModel.getInvoices());
     }
 
