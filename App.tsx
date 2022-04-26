@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import Auth from "./components/auth/Auth";
 import authModel from "./models/auth";
 import Invoices from "./components/invoices/Invoices";
+import Ship from "./components/ship/Ship";
 
 
 const Tab = createBottomTabNavigator();
@@ -53,6 +54,7 @@ export default function App() {
           <Tab.Screen name="Inleveranser">
           {() => <Deliveries products={products} setProducts={setProducts} />}
           </Tab.Screen>
+          <Tab.Screen name="Skicka" component={Ship} />
           {isLoggedIn ?
             <Tab.Screen name="Faktura">
               {() => <Invoices setIsLoggedIn={setIsLoggedIn} />}

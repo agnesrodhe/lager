@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable } from "react-native";
 import { Typography, Forms, Base } from "../../styles";
 
 export default function AuthFields({ auth, setAuth, title, submit, navigation }) {
@@ -32,7 +32,7 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation })
             <Pressable style={{...Base.button}} onPress={() => {
                 submit();
                 }}>
-                <Text style={{ ...Typography.buttonText}}>Logga in</Text>
+                <Text style={{ ...Typography.buttonText}}>{title}</Text>
             </Pressable>
             {title == "Logga in" && 
                 <Pressable style={{...Base.button2}} onPress={async () => {
