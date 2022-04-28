@@ -20,7 +20,8 @@ const routeIcons = {
   "Plock": "list",
   "Inleveranser": "car",
   "Faktura": "mail",
-  "Logga in": "lock-closed-outline"
+  "Logga in": "lock-closed-outline",
+  "Skicka": "map-outline"
 };
 
 export default function App() {
@@ -54,7 +55,9 @@ export default function App() {
           <Tab.Screen name="Inleveranser">
           {() => <Deliveries products={products} setProducts={setProducts} />}
           </Tab.Screen>
-          <Tab.Screen name="Skicka" component={Ship} />
+          <Tab.Screen name="Skicka">
+          {() => <Ship products={products} setProducts={setProducts} />}
+          </Tab.Screen>
           {isLoggedIn ?
             <Tab.Screen name="Faktura">
               {() => <Invoices setIsLoggedIn={setIsLoggedIn} />}
