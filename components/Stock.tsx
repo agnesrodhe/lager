@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
-import productModel from "../models/products.ts";
 import { Base, Typography } from './../styles';
+import StockList from './StockList';
 
 export default function Stock({ products, setProducts}) {
     return (
@@ -12,24 +11,3 @@ export default function Stock({ products, setProducts}) {
     );
 }
 
-function StockList({ route, products, setProducts, navigation }) {
-
-    useEffect(() => {
-        (async () => {
-            const allProducts = await productModel.getProducts();
-            setProducts(allProducts);
-        })();
-    }, []);
-
-    const list = products.map((product, index) => 
-            <Text style={ Typography.normal } key={index}>
-                { product.name } | { product.stock } st
-            </Text>
-        );
-
-    return (
-        <View>
-            {list}
-        </View>
-    )
-}

@@ -5,7 +5,6 @@ import warehouseLamp from './../assets/warehouse-lamp.jpg';
 import Stock from './../components/Stock.tsx';
 import { Base, Typography } from '../styles';
 import React from 'react';
-import productModel from "../models/products";
 
 export default function Home({ products, setProducts }) {
 

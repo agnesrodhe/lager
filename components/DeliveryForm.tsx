@@ -8,6 +8,7 @@ import deliveryModel from "../models/delivery";
 import Delivery from '../interfaces/delivery';
 import Products from '../interfaces/products';
 import config from "../config/config.json";
+import { showMessage } from 'react-native-flash-message';
 
 function ProductDropDown(props) {
     const [products, setProducts] = useState<Product[]>([]);
@@ -84,6 +85,16 @@ export default function DeliveryForm({ navigation, setProducts }) {
         navigation.navigate("Lista", { reload: true });
     }
 
+    function checkDelivery() {
+        let deliveryChecked = false;
+        if (Object.keys(delivery).length >= 3 && delivery.hasOwnProperty('delivery_date')) {
+            if (delivery.hasOwnProperty('amount') && delivery.hasOwnProperty('product_id')) {
+                deliveryChecked = true;
+            }
+        }
+        return deliveryChecked;
+    }
+
     return (
         <KeyboardAvoidingView
         behavior='padding'
@@ -135,7 +146,15 @@ export default function DeliveryForm({ navigation, setProducts }) {
             />
 
             <Pressable style={{...Base.button }} onPress={() => {
-                addDelivery();
+                if (checkDelivery()) {
+                    addDelivery();
+                } else {
+                    showMessage({
+                        message: "Ogiltig input",
+                        description: "Se till att fylla i produkt, datum och antal då dessa är obligatoriska.",
+                        type: "danger"
+                    });
+                }
                 }}>
                 <Text style={{ ...Typography.buttonText}}>Gör inleverans</Text>
             </Pressable>

@@ -21,7 +21,7 @@ export default function PickList({ route, navigation, setProducts }) {
         navigation.navigate("Lista", { reload: true });
     }
 
-    const orderItemsList = order.order_items.map((item, index) => {
+    const orderItemsList = order?.order_items?.map((item, index) => {
         return <Text style={Typography.normal2}
                 key={index}
                 >
@@ -29,24 +29,25 @@ export default function PickList({ route, navigation, setProducts }) {
                 </Text>;
     });
 
+
     let pickButtonOrText;
 
-    for (let item in order.order_items) {
+    for (let item in order?.order_items) {
         if (order.order_items[item].stock >= order.order_items[item].amount) {
-            pickButtonOrText = <Pressable style={{...Base.button, ...Typography.button}} onPress={() => { pick();}}>
+            pickButtonOrText = <Pressable style={{...Base.button, ...Typography.button}} onPress={() => { pick();}}
+            accessibilityLabel={`Plocka order genom att trycka`}>
                 <Text style={{ ...Typography.buttonText}}>Plocka order</Text>
             </Pressable>
         } else {
             pickButtonOrText = <Text style={{...Base.warning, ...Typography.header4}}>Det finns inte tillräckligt många varor i lager för att plocka ordern.</Text>
         }
     }
-
     return (
         <View style={Base.base}>
             <Text style={{...Typography.header4, ...Base.header4}}>Kund:</Text>
-            <Text style={Typography.normal2}>{order.name}</Text>
-            <Text style={Typography.normal2}>{order.address}</Text>
-            <Text style={Typography.normal}>{order.zip} {order.city}</Text>
+            <Text style={Typography.normal2}>{order?.name}</Text>
+            <Text style={Typography.normal2}>{order?.address}</Text>
+            <Text style={Typography.normal}>{order?.zip} {order?.city}</Text>
             <Text style={{...Typography.header4, ...Base.header4}}>Produkter:</Text>
             {orderItemsList}
             {pickButtonOrText}
